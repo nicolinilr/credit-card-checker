@@ -25,8 +25,77 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 // Add your functions below:
 
+const validateCred = array =>{
+    let reverseArray =[];
+    array.map(elem => {reverseArray.unshift(elem)});
+    let doubleTime=true;
+    for (let i=1; i<reverseArray.length; i++){
+        if(doubleTime){
+        let doubled = reverseArray[i]*2;
+
+        if(doubled > 9){
+            doubled=doubled-9;
+        };
+
+        reverseArray[i]=doubled;
+    };
+        doubleTime = !doubleTime;
+    };
+    sumArr = reverseArray.reduce((a,b) => a + b, 0);
+
+    if (sumArr%10===0){
+        return true;
+    } else {
+        return false;
+    };
+
+};
+
+const findInvalidCards = cardArray =>{
+    const invalidArray = [];
+    cardArray.forEach(card =>{
+
+    let isValid = validateCred(card);
+
+    if(!isValid){
+        invalidArray.push(card);
+    };
 
 
+});
+
+return invalidArray;
+};
+
+const idInvalidCardCompanies = invalidCards =>{
+    firstNums = [];
+    companies = [];
+    invalidCards.forEach(card => firstNums.push(card[0]));
+
+    if(firstNums.includes(3)){
+        companies.push('Amex');
+    };
+
+    if(firstNums.includes(4)){
+        companies.push('Visa');
+    };
+
+    if(firstNums.includes(5)){
+        companies.push('Mastercard');
+    };
+
+    if(firstNums.includes(6)){
+        companies.push('Discover');
+    };
+
+    if(firstNums.includes(0 || 1 || 2 || 7 || 8 || 9)){
+        companies.push('Company not found');
+    };
+
+    return companies;
+
+
+}
 
 
 
